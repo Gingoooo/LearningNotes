@@ -9,6 +9,7 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
 
+
     def insert(self, value):
         new_node = Node(value)
         if self.root is None:
@@ -29,6 +30,7 @@ class BinarySearchTree:
                     return True
                 temp = temp.right
 
+
     def contains(self, value):
         temp = self.root
         while (temp is not None):
@@ -39,7 +41,7 @@ class BinarySearchTree:
             else:
                 return True
         return False
-
+ 
 
     def __r_contains(self, current_node, value):
         if current_node == None: 
@@ -54,20 +56,38 @@ class BinarySearchTree:
     def r_contains(self, value):
         return self.__r_contains(self.root, value)
 
-
+ 
+          
     def __r_insert(self, current_node, value):
-        if current_node == None:
-            return Node(value)
+        if current_node == None: 
+            return Node(value)   
         if value < current_node.value:
             current_node.left = self.__r_insert(current_node.left, value)
         if value > current_node.value:
-            current_node.right = self.__r_insert(current_node.right, value)
-        return current_node
+            current_node.right = self.__r_insert(current_node.right, value) 
+        return current_node    
 
     def r_insert(self, value):
-        if self.root == None:
+        if self.root == None: 
             self.root = Node(value)
-        self.__r_insert(self.root, value)
+        self.__r_insert(self.root, value)  
+
+
+    def min_value(self, current_node, value):
+        while (current_node.left is not None):
+            current_node = current_node.left
+        return current_node.value 
+
+    
+    def __delete_node(self, current_node, value):
+        if current_node == None:
+            
+        
+
+
+    def delete_node(self, value):
+        return self.__delete_node(self.root, value)
+
 
 
 
@@ -77,25 +97,41 @@ my_tree.r_insert(1)
 my_tree.r_insert(3)
 
 """
-    THE LINES ABOVE CREATE THIS TREE:
-                 2
-                / \
-               1   3
+       2
+      / \
+     1   3
+"""
+
+print("root:", my_tree.root.value)
+print("root.left =", my_tree.root.left.value)
+print("root.right =", my_tree.root.right.value)
+
+
+my_tree.delete_node(2)
+
+"""
+       3
+      / \
+     1   None
 """
 
 
-print('Root:', my_tree.root.value)            
-print('Root -> Left:', my_tree.root.left.value)        
-print('Root -> Right:', my_tree.root.right.value)    
+print("\nroot:", my_tree.root.value)
+print("root.left =", my_tree.root.left.value)
+print("root.right =", my_tree.root.right)
 
 
 
 """
     EXPECTED OUTPUT:
     ----------------
-	Root: 2
-	Root -> Left: 1
-	Root -> Right: 3
+	root: 2
+	root.left = 1
+	root.right = 3
+
+	root: 3
+	root.left = 1
+	root.right = None
 
 """
 
