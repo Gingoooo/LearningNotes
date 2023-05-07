@@ -83,6 +83,7 @@ class BinarySearchTree:
 
 
 
+
 my_tree = BinarySearchTree()
 my_tree.insert(47)
 my_tree.insert(21)
